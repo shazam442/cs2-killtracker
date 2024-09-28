@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   post "hello", to: "game_state_events#hello" # for testing (a button with post messod is shown in game_state_events#home view)
+
+  get "steam_user/:steamid", to: "steam_users#show"
   post "game_event", to: "game_state_events#game_event"
   root "game_state_events#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
