@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  real_name: MyString
+  nickname: MyString
+  steamid: 1
+  kills: 1
+
+two:
+  real_name: MyString
+  nickname: MyString
+  steamid: 1
+  kills: 1
