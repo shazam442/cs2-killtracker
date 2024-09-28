@@ -1,5 +1,7 @@
 class SteamUsersController < ApplicationController
   def show
-    render json: { data: "bonjour" }
+    steam_user = SteamUser.find_by(steamid: params[:steamid])
+
+    render json: steam_user || { data: "NONE"}
   end
 end
