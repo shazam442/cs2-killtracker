@@ -28,15 +28,13 @@ class GameStateEventsController < ApplicationController
     killcount = new_match_data.dig(:kills)
     previous_killcount = previous_match_data&.dig(:kills) || new_match_stat_record.previous_kills
 
-    if previous_killcount.nil? then new_kills = 0 # represents case where previous data was omitted by client and therefore cant be subtracted fromd current killcount (could result in new_kills 50 or any big number)
-
-    elsif killcount.nil? then new_kills = 0 # represents error
+    new_kills = if killcount.nil? || previous_killcount.nil?
+      0
     else
-      new_kills = killcount - previous_killcount
+      killcount - previous_killcount
     end
 
-    new_kills = [1, new_kills].min # upper bound of 1 (prevent more than one kill at a time to be registered)
-    new_kills = [0, new_kills].max # lower bound of 0 (prevent negative)
+    new_kills = new_kills.clamp(0, 1) # prevent too many or negative kills from being added
 
     player.kills += new_kills
 
