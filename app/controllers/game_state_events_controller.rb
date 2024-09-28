@@ -15,17 +15,12 @@ class GameStateEventsController < ApplicationController
 
 
     new_match_data = permitted_params&.dig :player, :match_stats # can be nil if in menu
-    timestamp = permitted_params&.dig :provider, :timestamp
 
     return render json: { error: "Match data missing", steamid: player&.steamid }, status: :ok if new_match_data.nil?
 
     previous_match_data = permitted_params&.dig :previously, :player, :match_stats # can be missing in request therefore nil handling below-
 
-    new_match_stat_record = MatchStatRecord.new(new_match_data)
-    new_match_stat_record.steam_user = player
-    new_match_stat_record.timestamp = Time.at(timestamp)
-    new_match_stat_record.previous_kills = previous_match_data&.dig(:kills)
-    new_match_stat_record.save
+    new_match_stat_record = create_match_stat_record(new_match_data, previous_match_data, player, permitted_params)
 
     return render json: { error: "Match data missing", steamid: player&.steamid }, status: :ok if new_match_stat_record.request_type == "heartbeat_or_other"
 
@@ -61,7 +56,14 @@ class GameStateEventsController < ApplicationController
 
   private
 
-  def create_match_stat_record
+  def create_match_stat_record(new_match_data, previous_match_data, player, permitted_params)
+    timestamp = permitted_params&.dig :provider, :timestamp
+
+    new_match_stat_record = MatchStatRecord.new(new_match_data)
+    new_match_stat_record.steam_user = player
+    new_match_stat_record.timestamp = Time.at(timestamp)
+    new_match_stat_record.previous_kills = previous_match_data&.dig(:kills)
+    new_match_stat_record.save
   end
 
   def render_player_not_found(player)
