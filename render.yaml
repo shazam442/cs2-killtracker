@@ -1,12 +1,12 @@
 databases:
-  - name: mysite
-    databaseName: mysite
+  - name: cs2_killtracker_database
+    databaseName: cs2_killtracker_database
     user: sam
     plan: free
 
 services:
   - type: web
-    name: mysite
+    name: cs2_killtracker_webserver
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
@@ -15,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: cs2_killtracker_database
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
