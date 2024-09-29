@@ -61,7 +61,10 @@ class GameStateEventsController < ApplicationController
     new_match_stat_record.steam_user = player
     new_match_stat_record.timestamp = Time.at(timestamp)
     new_match_stat_record.previous_kills = previous_match_data&.dig(:kills)
-    new_match_stat_record.save
+
+
+    return new_match_stat_record if new_match_stat_record.save
+    return false
   end
 
   def render_player_not_found(player)
