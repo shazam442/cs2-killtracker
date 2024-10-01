@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_01_194436) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_01_203031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_194436) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "person_id"
-    t.index ["person_id"], name: "index_steam_accounts_on_person_id"
+    t.index ["person_id"], name: "index_steam_accounts_on_person_id", unique: true
     t.index ["steamid"], name: "index_steam_accounts_on_steamid", unique: true
   end
 

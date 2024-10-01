@@ -8,7 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+first_user = Person.find_or_create_by!(first_name: "Sam", last_name: "Schams") do |p|
+  p.email = "samschams@gmail.com"
+end
+
 SteamAccount.find_or_create_by!(steamid: 76561198291413327) do |acc|
   acc.nickname = "BAMBI"
   acc.kills = 0
+  acc.person = first_user
 end

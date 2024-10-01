@@ -6,6 +6,7 @@
       <th>Nickname</th>
       <th>Steam ID</th>
       <th>Kills</th>
+      <th>Owner (person_id)</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -15,6 +16,7 @@
         <td><%= steam_account.nickname %></td>
         <td><%= steam_account.steamid %></td>
         <td><%= steam_account.kills %></td>
+        <td><%= steam_account.person.id %></td>
         <td>
           <%= link_to 'Show', steam_account_path(steam_account) %> |
           <%= link_to 'Edit', edit_steam_account_path(steam_account) %> |

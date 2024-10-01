@@ -19,15 +19,27 @@ class SteamAccountsController < ApplicationController
     if @steam_account.save
       redirect_to @steam_account, notice: 'Steam Account was successfully created'
     else
-      Rails.logger.debug @steam_account.errors.full_messages
-      Rails.logger.debug @steam_account.errors.any?
       render :new
+    end
+  end
+
+  def edit
+    @steam_account = SteamAccount.find(params[:id])
+  end
+
+  def update
+    @steam_account = SteamAccount.find(params[:id])
+
+    if @steam_account.update(steam_account_params)
+      redirect_to steam_accounts_path, notice: "Steam Account successfully updated"
+    else
+      render :edit
     end
   end
 
   private
 
   def steam_account_params
-    params.require(:steam_account).permit(:nickname, :steamid, :kills)
+    params.require(:steam_account).permit(:nickname, :steamid, :kills, :person_id)
   end
 end
