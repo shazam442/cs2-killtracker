@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   post "hello", to: "game_state_events#hello" # for testing (a button with post messod is shown in game_state_events#home view)
 
   get "steam_account/:steamid", to: "steam_accounts#show"
+  resources :steam_accounts, only: [:index, :show, :new, :create, :edit]
   post "game_event", to: "game_state_events#game_event"
-  root "game_state_events#home"
+  root "steam_accounts#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

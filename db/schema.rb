@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_01_172843) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_01_194436) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_172843) do
     t.integer "mvps"
     t.integer "score"
     t.datetime "timestamp", null: false
-    t.integer "steam_account_id", null: false
+    t.bigint "steam_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["steam_account_id"], name: "index_match_stat_records_on_steam_account_id"
@@ -60,4 +60,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_172843) do
   add_foreign_key "killtracker_units", "people"
   add_foreign_key "killtracker_units", "steam_accounts", column: "tracked_steam_account_id"
   add_foreign_key "match_stat_records", "steam_accounts"
+  add_foreign_key "steam_accounts", "people"
 end

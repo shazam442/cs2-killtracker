@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+SteamAccount.find_or_create_by!(steamid: 76561198291413327) do |acc|
+  acc.nickname = "BAMBI"
+  acc.kills = 0
+end

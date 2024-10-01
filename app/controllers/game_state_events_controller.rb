@@ -1,9 +1,6 @@
 class GameStateEventsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :game_event
 
-  def home
-  end
-
   def game_event
     # implement params.require and params.permit in future
     permitted_params = permit_params()
@@ -40,16 +37,10 @@ class GameStateEventsController < ApplicationController
 
     if player.save
       logger.info "SteamAccount kills updated"
-      GameEventsChannel.transmit_kills(player)
       return render json: { message: "SteamAccount kills updated", kills: player.kills, status: :ok}
     end
 
     return render json: { message: "Failed to update kills for SteamAccount", status: :ok}
-  end
-
-  def hello
-    logger.info "button clicked..."
-    ActionCable.server.broadcast 'GameEventsChannel', {name: "joffrey"}
   end
 
   private

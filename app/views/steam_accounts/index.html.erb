@@ -1,0 +1,28 @@
+<h1>Steam Accounts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nickname</th>
+      <th>Steam ID</th>
+      <th>Kills</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @steam_accounts.each do |steam_account| %>
+      <tr>
+        <td><%= steam_account.nickname %></td>
+        <td><%= steam_account.steamid %></td>
+        <td><%= steam_account.kills %></td>
+        <td>
+          <%= link_to 'Show', steam_account_path(steam_account) %> |
+          <%= link_to 'Edit', edit_steam_account_path(steam_account) %> |
+          <%= link_to 'Delete', steam_account_path(steam_account), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Steam Account', new_steam_account_path %>

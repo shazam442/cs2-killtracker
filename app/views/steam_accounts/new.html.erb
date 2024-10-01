@@ -1,0 +1,36 @@
+<h1>Create a New SteamAccount</h1>
+
+<%= form_with(model: @steam_account, local: true) do |form| %>
+<%= debug(@steam_account.errors.full_messages) %>
+<%= debug(@steam_account.inspect) %>
+  <% if @steam_account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@steam_account.errors.count, "error") %> prohibited this steam_account from being saved:</h2>
+
+      <ul>
+        <% @steam_account.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :steamid %>
+    <%= form.text_field :steamid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :kills %>
+    <%= form.number_field :kills %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create SteamAccount" %>
+  </div>
+<% end %>
