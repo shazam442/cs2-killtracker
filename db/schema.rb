@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_22_200040) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_01_120607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_200040) do
   create_table "steam_users", force: :cascade do |t|
     t.string "real_name", null: false
     t.string "nickname", null: false
-    t.integer "steamid", null: false
+    t.bigint "steamid", null: false
     t.integer "kills", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
