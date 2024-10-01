@@ -1,8 +1,8 @@
 require "test_helper"
 
-class SteamUsersControllerTest < ActionDispatch::IntegrationTest
+class SteamAccountsControllerTest < ActionDispatch::IntegrationTest
   test "should get show" do
-    get steam_users_show_url
+    get steam_accounts_show_url
     assert_response :success
   end
 end

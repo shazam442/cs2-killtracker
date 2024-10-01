@@ -1,2 +1,2 @@
-module SteamUsersHelper
+module SteamAccountsHelper
 end

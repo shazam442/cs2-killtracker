@@ -10,7 +10,7 @@ class GameStateEventsController < ApplicationController
 
 
     steamid = permitted_params&.dig :provider, :steamid
-    player = SteamUser.find_by(steamid: steamid) # can be nil if player not found
+    player = SteamAccount.find_by(steamid: steamid) # can be nil if player not found
     return render_player_not_found(steamid) unless player
 
 
@@ -39,12 +39,12 @@ class GameStateEventsController < ApplicationController
     player.kills += new_kills
 
     if player.save
-      logger.info "SteamUser kills updated"
+      logger.info "SteamAccount kills updated"
       GameEventsChannel.transmit_kills(player)
-      return render json: { message: "SteamUser kills updated", kills: player.kills, status: :ok}
+      return render json: { message: "SteamAccount kills updated", kills: player.kills, status: :ok}
     end
 
-    return render json: { message: "Failed to update kills for SteamUser", status: :ok}
+    return render json: { message: "Failed to update kills for SteamAccount", status: :ok}
   end
 
   def hello
@@ -58,7 +58,7 @@ class GameStateEventsController < ApplicationController
     timestamp = permitted_params&.dig :provider, :timestamp
 
     new_match_stat_record = MatchStatRecord.new(new_match_data)
-    new_match_stat_record.steam_user = player
+    new_match_stat_record.steam_account = player
     new_match_stat_record.timestamp = Time.at(timestamp)
     new_match_stat_record.previous_kills = previous_match_data&.dig(:kills)
 
@@ -68,7 +68,7 @@ class GameStateEventsController < ApplicationController
   end
 
   def render_player_not_found(player)
-    render json: { error: "SteamUser not found in database", steamid: player&.steamid }, status: :ok
+    render json: { error: "SteamAccount not found in database", steamid: player&.steamid }, status: :ok
   end
 
   def permit_params

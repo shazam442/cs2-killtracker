@@ -1,5 +1,5 @@
 class MatchStatRecord < ApplicationRecord
-  belongs_to :steam_user, optional: false
+  belongs_to :steam_account, optional: false
   before_save :set_type, :set_previous_kills
 
   private
@@ -7,7 +7,7 @@ class MatchStatRecord < ApplicationRecord
   def set_previous_kills
     return if previous_kills
     # Find the most recent match_stat_record of type 'event' for the same user
-    last_event_record = steam_user.match_stat_records
+    last_event_record = steam_account.match_stat_records
                                    .where(request_type: 'event')
                                    .order(timestamp: :desc)
                                    .first
@@ -17,8 +17,8 @@ class MatchStatRecord < ApplicationRecord
   end
 
   def set_type
-    # Find the most recent record for the same steam_user
-    last_record = steam_user.match_stat_records.order(timestamp: :desc).first
+    # Find the most recent record for the same steam_account
+    last_record = steam_account.match_stat_records.order(timestamp: :desc).first
 
     # Check if the last record exists and if all fields match
     if last_record &&

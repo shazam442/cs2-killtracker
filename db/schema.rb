@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_01_120607) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_01_133046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,21 +23,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_120607) do
     t.integer "mvps"
     t.integer "score"
     t.datetime "timestamp", null: false
-    t.integer "steam_user_id", null: false
+    t.integer "steam_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["steam_user_id"], name: "index_match_stat_records_on_steam_user_id"
+    t.index ["steam_account_id"], name: "index_match_stat_records_on_steam_account_id"
   end
 
-  create_table "steam_users", force: :cascade do |t|
+  create_table "steam_accounts", force: :cascade do |t|
     t.string "real_name", null: false
     t.string "nickname", null: false
     t.bigint "steamid", null: false
     t.integer "kills", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["steamid"], name: "index_steam_users_on_steamid", unique: true
+    t.index ["steamid"], name: "index_steam_accounts_on_steamid", unique: true
   end
 
-  add_foreign_key "match_stat_records", "steam_users"
+  add_foreign_key "match_stat_records", "steam_accounts"
 end

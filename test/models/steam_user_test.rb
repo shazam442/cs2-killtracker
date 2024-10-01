@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SteamUserTest < ActiveSupport::TestCase
+class SteamAccountTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
