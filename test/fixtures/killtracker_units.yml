@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  person: one
+  tracked_steam_account: one
+
+two:
+  person: two
+  tracked_steam_account: two
