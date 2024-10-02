@@ -1,9 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repo contains a Ruby on Rails webserver that is able to receive game data from Counter Strike 2 players in realtime and provides API endpoints for accessing said game data (kills, deaths, etc.).
 
-Things you may want to cover:
+My related project ESP32-CS2-Killtracker contains the code for a microprocessor with a display to fetch and display killcounts for any given player via HTTP Polling.
+
+Documentation to come.
 
 * Ruby version
 
