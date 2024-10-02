@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   post "hello", to: "game_state_events#hello" # for testing (a button with post messod is shown in game_state_events#home view)
 
-  get "steam_account/:steamid", to: "steam_accounts#show"
-  resources :steam_accounts, only: [:index, :show, :new, :create, :edit, :update]
+  resources :steam_accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   post "game_event", to: "game_state_events#game_event"
   root "steam_accounts#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

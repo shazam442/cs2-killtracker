@@ -1,0 +1,13 @@
+<h1><%= @steam_account.nickname %></h1>
+
+<p>
+   <strong>nickname: </strong> <%= @steam_account.nickname %><br />
+   <strong>steamid :</strong> <%= @steam_account.steamid %><br />
+   <strong>kills</strong> <%= @steam_account.kills %><br />
+   <strong>Owner</strong> <%= @steam_account.person.full_name %><br />
+</p>
+
+
+<hr />
+
+<%= link_to 'Back', steam_accounts_path %>
