@@ -19,7 +19,7 @@ class SteamAccountsController < ApplicationController
     if @steam_account.save
       redirect_to @steam_account, notice: 'Steam Account was successfully created'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +33,7 @@ class SteamAccountsController < ApplicationController
     if @steam_account.update(steam_account_params)
       redirect_to steam_accounts_path, notice: "Steam Account successfully updated"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

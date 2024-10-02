@@ -1,5 +1,5 @@
 class SteamAccount < ApplicationRecord
-  validates :steamid, presence: true, uniqueness: true
+  validates :steamid, presence: true, uniqueness: true, numericality: { only_integer: true }
   validates :nickname, presence: true
   validates :kills, numericality: { only_integer: true }
   validates :person_id, uniqueness: true, allow_nil: true
